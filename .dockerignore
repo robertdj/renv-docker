@@ -1,1 +1,4 @@
-renv/library
+.git
+.gitignore
+Dockerfile*
+README.md
