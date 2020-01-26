@@ -3,6 +3,6 @@
 docker run --rm -it \
     -e "RENV_PATHS_CACHE=/home/shiny/renv/cache" \
     -v /home/robert/Documents/R/renv-cache:/home/shiny/renv/cache \
-    -v /home/robert/Documents/R/renv-test:/home/shiny/project \
+    -v `pwd`:/home/shiny/project \
     renv-test:latest Rscript renv_install.R
 
