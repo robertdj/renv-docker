@@ -1,0 +1,8 @@
+ARG R_VERSION
+ARG SHINY_VERSION
+FROM shiny:${R_VERSION}-${SHINY_VERSION}
+
+RUN mkdir -p $HOME/renv/cache
+
+WORKDIR $HOME/project
+
