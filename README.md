@@ -11,7 +11,10 @@ This repository show how to import renv'ed projects into *self-contained* Docker
 - They refer to paths on my computer.
 - They use [Docker images I have created](https://github.com/robertdj/r-dockerfiles).
 
-Both issues are easily fixed by changing the paths and `FROM` images in the `Dockerfile`s and in `renv_install.sh`.
+Both issues are easily fixed by:
+
+- Change the paths in the `renv_install.sh` scripts.
+- Create my images locally (they are not on Docker hub) or change the `FROM` images in the `Dockerfile`s.
 
 
 # What problem am I trying to solve?
@@ -44,6 +47,15 @@ Note that when renv's cache on the host is filled in this manner it contains Lin
 
 There are three demo projects, each in its own folder with an associated RStudio project and renv setup.
 
+If we start a container with the Shiny apps with this command 
+
+```
+docker run --rm -p port:3838 <image>:<tag>
+```
+
+the app is available on the url <http://localhost:port/project>.
+
+
 ## Project
 
 This project is very simple.
@@ -71,7 +83,7 @@ This illustrates how to utilize the packages already installed, renv's cache and
 First build an image from `Dockerfile_install` that has just a new folder for this project and the renv cache inside the image.
 
 ```
-docker build --build-arg R_VERSION=3.6.1 --tag renv-test:latest -f Dockerfile_install .
+docker build --build-arg R_VERSION=3.6.1 --build-arg SHINY_VERSION=1.5.9.923 --tag renv-test:latest -f Dockerfile_install .
 ```
 
 Second, install the project's dependencies in the freshly build image and share these with the host by mounting the host's renv cache and this folder.
@@ -81,7 +93,7 @@ This makes the project isolated on the host.
 Lastly, we build an image from `Dockerfile_build` that copies this project from the host to the image:
 
 ```
-docker build --build-arg R_VERSION=3.6.1 --tag renv-test:latest -f Dockerfile_build .
+docker build --build-arg R_VERSION=3.6.1 --build-arg SHINY_VERSION=1.5.9.923 --tag renv-test:latest -f Dockerfile_build .
 ```
 
 Here I overwrite the first image by using the same name and tag.
