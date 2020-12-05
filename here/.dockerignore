@@ -1,4 +1,2 @@
-.git
-.gitignore
 Dockerfile*
-README.md
+.Rhistory
