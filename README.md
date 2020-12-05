@@ -119,8 +119,33 @@ Navigate to <http://localhost:3839/project> to see the Shiny app.
 
 ## Shiny with K means in C++
 
-A Shiny app looking just like the first one, but using the [{ClusterR} package](https://cran.r-project.org/package=ClusterR) instead of the `kmeans` function from `base`.
+A Shiny app looking just like the first one, but using the [{ClusterR} package](https://cran.r-project.org/package=ClusterR) to perform K means clustering instead of the `kmeans` function from `base`.
 This illustrates how to utilize the packages already installed, {renv}'s cache and packages with compiled code having system requirements.
+
+The path to reconstruction is:
+
+1. Navigate to the `shiny_kmeans_rcpp` folder.
+2. Build the "install image":
+
+```
+docker build --build-arg R_VERSION=3.6.1 --build-arg SHINY_VERSION=1.5.9.923 --tag renv-test:latest -f Dockerfile_install .
+```
+
+3. Restore the project inside the container by running the `renv_install.sh` script.
+4. Build the final image:
+
+```
+docker build --build-arg R_VERSION=3.6.1 --build-arg SHINY_VERSION=1.5.9.923 --tag renv-test:latest .
+```
+
+Check out a running container with this command (where `3839` is an example port):
+
+```
+docker run --rm -it -p 3839:3838 renv-test:latest
+```
+
+You should see Shiny server starting. 
+Navigate to <http://localhost:3839/project> to see the Shiny app.
 
 
 # The details
