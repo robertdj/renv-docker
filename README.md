@@ -44,7 +44,7 @@ The examples with Shiny server use a simple configuration file with an elaborate
 Check out [Shiny server's docs](https://docs.rstudio.com/shiny-server) to learn more about its configuration.
 
 
-## Project
+## Here
 
 This project is very simple.
 It contains a single R script loading the [{here} package](https://cran.r-project.org/package=here).
@@ -52,7 +52,7 @@ Due to the minimal requirements of the {here} package, the "install image" just 
 
 The path to reconstruction is:
 
-1. Navigate to the `project` folder.
+1. Navigate to the `here` folder.
 2. Build the "install image":
 
 ```
