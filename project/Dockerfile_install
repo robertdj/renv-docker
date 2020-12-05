@@ -1,5 +1,5 @@
 ARG R_VERSION
-FROM r-base:${R_VERSION}
+FROM robertdj/r-base:${R_VERSION}
 
 RUN mkdir -p $HOME/renv/cache
 
