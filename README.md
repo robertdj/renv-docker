@@ -148,8 +148,9 @@ Navigate to <http://localhost:3839/project> to see the Shiny app.
 
 # Notes
 
-The second step above modify files on the host.
-It modifies {renv}'s cache as intended, but also the files in this project in order to isolate the project.
+Note that the `renv_install.sh` scripts modify files on the host.
+
+It modifies {renv}'s cache as intended, but also the files in the project in order to isolate the project.
 In particular, the file `renv/settings.dcf` is changed from
 
 ```
@@ -173,5 +174,5 @@ vcs.ignore.library: TRUE
 These steps can be reverted by deleting the folder `renv/library` and reverting the changes in `renv/settings.dcf`.
 I think these steps are not just sufficient, but also necessary.
 
-The path added in `external.libraries` is the normal package library in the current `FROM` image, that is the first element in the output of `.libPaths()`.
+The path added in `external.libraries` is the normal package library in the current `FROM` image -- that is, the first element in the output of `.libPaths()`.
 
