@@ -108,7 +108,7 @@ docker build --build-arg R_VERSION=3.6.1 --build-arg SHINY_VERSION=1.5.9.923 --t
 Check out a running container with this command (where `3839` is an example port):
 
 ```
-docker run --rm -it -p 3839:3838 renv-test:latest
+docker run --rm -p 3839:3838 renv-test:latest
 ```
 
 You should see Shiny server starting. 
@@ -139,7 +139,7 @@ docker build --build-arg R_VERSION=3.6.1 --build-arg SHINY_VERSION=1.5.9.923 --t
 Check out a running container with this command (where `3839` is an example port):
 
 ```
-docker run --rm -it -p 3839:3838 renv-test:latest
+docker run --rm -p 3839:3838 renv-test:latest
 ```
 
 You should see Shiny server starting. 
