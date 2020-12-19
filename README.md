@@ -9,6 +9,9 @@ This repository show how to import renv'ed projects into *self-contained* Docker
 **Please note**: The `Dockerfile`s will most likely not run as is because the path to {renv}'s cache on the host is a path on my computer (`/home/robert/Documents/R/renv-cache`).
 But change the path in the `renv_install.sh` scripts and it should work.
 
+To see the path to {renv}'s cache run `renv::paths$cache()`.
+The path can be changed by setting the environment variable `RENV_PATHS_CACHE` like in the `renv_install.sh` scripts.
+
 
 # What problem am I trying to solve?
 
@@ -56,14 +59,14 @@ The path to reconstruction is:
 2. Build the "install image":
 
 ```
-docker build --build-arg R_VERSION=3.6.1 --tag renv-test:latest -f Dockerfile_install .
+docker build --build-arg R_VERSION=3.6.3 --tag renv-test:latest -f Dockerfile_install .
 ```
 
 3. Restore the project inside the container by running the `renv_install.sh` script.
 4. Build the final image:
 
 ```
-docker build --build-arg R_VERSION=3.6.1 --tag renv-test:latest .
+docker build --build-arg R_VERSION=3.6.3 --tag renv-test:latest .
 ```
 
 Check out a running container with this command:
@@ -75,7 +78,7 @@ docker run --rm -it renv-test:latest
 You should see {renv} being activated and the {here} package should be available:
 
 ```
-* Project '~/project' loaded. [renv 0.9.2]
+* Project '~/project' loaded. [renv 0.9.3]
 > library(here)
 here() starts at /home/shiny/project
 ```
@@ -95,14 +98,14 @@ The path to reconstruction is:
 2. Build the "install image":
 
 ```
-docker build --build-arg R_VERSION=3.6.1 --build-arg SHINY_VERSION=1.5.9.923 --tag renv-test:latest -f Dockerfile_install .
+docker build --build-arg R_VERSION=3.6.3 --build-arg SHINY_VERSION=1.5.13.944 --tag renv-test:latest -f Dockerfile_install .
 ```
 
 3. Restore the project inside the container by running the `renv_install.sh` script.
 4. Build the final image:
 
 ```
-docker build --build-arg R_VERSION=3.6.1 --build-arg SHINY_VERSION=1.5.9.923 --tag renv-test:latest .
+docker build --build-arg R_VERSION=3.6.3 --build-arg SHINY_VERSION=1.5.13.944 --tag renv-test:latest .
 ```
 
 Check out a running container with this command (where `3839` is an example port):
@@ -126,14 +129,14 @@ The path to reconstruction is:
 2. Build the "install image":
 
 ```
-docker build --build-arg R_VERSION=3.6.1 --build-arg SHINY_VERSION=1.5.9.923 --tag renv-test:latest -f Dockerfile_install .
+docker build --build-arg R_VERSION=3.6.3 --build-arg SHINY_VERSION=1.5.13.944 --tag renv-test:latest -f Dockerfile_install .
 ```
 
 3. Restore the project inside the container by running the `renv_install.sh` script.
 4. Build the final image:
 
 ```
-docker build --build-arg R_VERSION=3.6.1 --build-arg SHINY_VERSION=1.5.9.923 --tag renv-test:latest .
+docker build --build-arg R_VERSION=3.6.3 --build-arg SHINY_VERSION=1.5.13.944 --tag renv-test:latest .
 ```
 
 Check out a running container with this command (where `3839` is an example port):
