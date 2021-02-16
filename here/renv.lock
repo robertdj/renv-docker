@@ -1,20 +1,20 @@
 {
   "R": {
-    "Version": "3.6.3",
+    "Version": "4.0.2",
     "Repositories": [
       {
         "Name": "MRAN",
-        "URL": "https://mran.microsoft.com/snapshot/2020-04-24"
+        "URL": "https://mran.microsoft.com/snapshot/2020-10-10"
       }
     ]
   },
   "Packages": {
     "backports": {
       "Package": "backports",
-      "Version": "1.1.6",
+      "Version": "1.1.10",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "3997fd62345a616e59e8161ee0a5816f"
+      "Hash": "05ffd2d4acb51aee70f1de68ad7a6aed"
     },
     "here": {
       "Package": "here",
@@ -25,10 +25,10 @@
     },
     "renv": {
       "Package": "renv",
-      "Version": "0.9.3",
+      "Version": "0.12.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "c1a367437d8a8a44bec4b9d4974cb20c"
+      "Hash": "7340c71f46a0fd16506cfa804e224e44"
     },
     "rprojroot": {
       "Package": "rprojroot",
