@@ -123,6 +123,9 @@ Navigate to <http://localhost:3839/project> to see the Shiny app.
 A Shiny app looking just like the first one, but using the [{ClusterR} package](https://cran.r-project.org/package=ClusterR) to perform K means clustering instead of the `kmeans` function from `base`.
 This illustrates how to utilize the packages already installed, {renv}'s cache and packages with compiled code having system requirements.
 
+A shameless plug:
+It can be tedious to find system requirements for packages, but my [{pkg.deps} package](https://github.com/robertdj/pkg.deps) can help out.
+
 The path to reconstruction is:
 
 1. Navigate to the `shiny_kmeans_rcpp` folder.
