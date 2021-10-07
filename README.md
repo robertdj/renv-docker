@@ -123,8 +123,11 @@ Navigate to <http://localhost:3839/project> to see the Shiny app.
 A Shiny app looking just like the first one, but using the [{ClusterR} package](https://cran.r-project.org/package=ClusterR) to perform K means clustering instead of the `kmeans` function from `base`.
 This illustrates how to utilize the packages already installed, {renv}'s cache and packages with compiled code having system requirements.
 
-A shameless plug:
-It can be tedious to find system requirements for packages, but my [{pkg.deps} package](https://github.com/robertdj/pkg.deps) can help out.
+It can be tedious to find system requirements for packages.
+I know of two ways:
+
+* The [{remotes} package](https://remotes.r-lib.org) has the function `system_requirements`. Here is a [nice walkthrough](https://mdneuzerling.com/post/determining-system-dependencies-for-r-projects).
+* My own unofficial [{pkg.deps} package](https://github.com/robertdj/pkg.deps) that does the same as `system_requirements` without calling an RStudio Package Manager server. (Made before I became aware that {remotes} offers the same.)
 
 The path to reconstruction is:
 
