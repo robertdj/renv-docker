@@ -23,7 +23,7 @@ The {renv} package circumvents this by having its own cache with packages.
 Packages used in renv'ed projects are installed in the cache and a symbolic link/shortcut is made from the renv'ed projects to the cache.
 
 When making Docker images we want them to be *self-contained*, so that they can run on any host.
-So my problem is how to build self-contained Docker images *fast*, that is, using a cache?
+So my problem is how to build self-contained Docker images *fast*, that is, using a cache.
 
 
 # A solution
