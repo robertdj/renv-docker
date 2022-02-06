@@ -1,41 +1,21 @@
 {
   "R": {
-    "Version": "4.0.2",
+    "Version": "4.1.1",
     "Repositories": [
       {
         "Name": "MRAN",
-        "URL": "https://mran.microsoft.com/snapshot/2020-10-10"
+        "URL": "https://mran.microsoft.com/snapshot/2021-11-01"
       }
     ]
   },
   "Packages": {
-    "backports": {
-      "Package": "backports",
-      "Version": "1.1.10",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "05ffd2d4acb51aee70f1de68ad7a6aed"
-    },
-    "here": {
-      "Package": "here",
-      "Version": "0.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "2c0406b8e0a4c3516ab37be62da74e3c"
-    },
     "renv": {
       "Package": "renv",
-      "Version": "0.12.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "7340c71f46a0fd16506cfa804e224e44"
-    },
-    "rprojroot": {
-      "Package": "rprojroot",
-      "Version": "1.3-2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "f6a407ae5dd21f6f80a6708bbb6eb3ae"
+      "Version": "0.14.0",
+      "OS_type": NA,
+      "NeedsCompilation": "no",
+      "Repository": "MRAN",
+      "Source": "Repository"
     }
   }
 }
