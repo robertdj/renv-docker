@@ -1,7 +1,9 @@
 ARG R_VERSION
 FROM robertdj/r-base:${R_VERSION}
 
-COPY --chown=shiny:shiny . $HOME/project/
+USER shiny
 
-WORKDIR $HOME/project
+COPY --chown=shiny:shiny . /home/shiny/project/
+
+WORKDIR /home/shiny/project
 
