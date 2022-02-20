@@ -2,7 +2,9 @@ ARG R_VERSION
 ARG SHINY_VERSION
 FROM robertdj/shiny:${R_VERSION}-${SHINY_VERSION}
 
-RUN mkdir -p $HOME/renv/cache
+USER shiny
 
-WORKDIR $HOME/project
+RUN mkdir -p /home/shiny/renv/cache
+
+WORKDIR /home/shiny/project
 
