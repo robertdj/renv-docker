@@ -1,3 +1,5 @@
+# syntax = docker/dockerfile:1.3-labs
+
 ARG R_VERSION
 ARG SHINY_VERSION
 FROM robertdj/shiny:${R_VERSION}-${SHINY_VERSION}
@@ -18,7 +20,7 @@ EOF
 
 USER shiny
 
-RUN mkdir -p $HOME/renv/cache
+RUN mkdir -p /home/shiny/renv/cache
 
-WORKDIR $HOME/project
+WORKDIR /home/shiny/project
 

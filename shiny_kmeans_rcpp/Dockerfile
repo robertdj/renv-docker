@@ -1,3 +1,5 @@
+# syntax = docker/dockerfile:1.3-labs
+
 ARG R_VERSION
 ARG SHINY_VERSION
 FROM robertdj/shiny:${R_VERSION}-${SHINY_VERSION}
@@ -13,14 +15,15 @@ apt-get install -y --no-install-recommends \
     libfftw3-dev \
     libtiff5-dev
 
+rm -rf /tmp/*
 rm -rf /var/lib/apt/lists/*
 EOF
 
 USER shiny
 
-COPY --chown=shiny:shiny . $HOME/project/
+COPY --chown=shiny:shiny . /home/shiny/project/
 
 RUN ln -s /home/shiny/project /srv/shiny-server/project
 
-WORKDIR $HOME/project
+WORKDIR /home/shiny/project
 

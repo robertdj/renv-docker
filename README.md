@@ -6,7 +6,7 @@ So even after updating packages in your main R library, packages in an renv'ed p
 
 This repository show how to import renv'ed projects into *self-contained* Docker images -- building on ideas from the article ["Using renv with Docker" at {renv}'s website](https://rstudio.github.io/renv/articles/docker.html).
 
-**Please note**: The `Dockerfile`s will most likely not run as is because the path to {renv}'s cache on the host is a path on my computer (`/home/robert/Documents/R/renv-cache`).
+**Please note**: The `Dockerfile`s will most likely not run as is because the path to {renv}'s cache on the host is a path on my computer (`/home/robert/code/R/renv-cache`).
 But change the path in the `renv_install.sh` scripts and it should work.
 
 To see the path to {renv}'s cache run `renv::paths$cache()`.
@@ -135,14 +135,14 @@ The path to reconstruction is:
 2. Build the "install image":
 
 ```
-docker build --build-arg R_VERSION=4.1.1 --build-arg SHINY_VERSION=1.5.17.973 --tag renv-test:latest -f Dockerfile_install .
+DOCKER_BUILDKIT=1 docker build --build-arg R_VERSION=4.1.1 --build-arg SHINY_VERSION=1.5.17.973 --tag renv-test:latest -f Dockerfile_install .
 ```
 
 3. Restore the project inside the container by running the `renv_install.sh` script.
 4. Build the final image:
 
 ```
-docker build --build-arg R_VERSION=4.1.1 --build-arg SHINY_VERSION=4.1.1-1.5.17.973 --tag renv-test:latest .
+DOCKER_BUILDKIT=1 docker build --build-arg R_VERSION=4.1.1 --build-arg SHINY_VERSION=4.1.1-1.5.17.973 --tag renv-test:latest .
 ```
 
 Check out a running container with this command (where `3839` is an example port):
