@@ -120,7 +120,7 @@ Navigate to <http://localhost:3839/project> to see the Shiny app.
 
 ## Shiny with K means in C++
 
-A Shiny app looking just like the first one, but using the [{ClusterR} package](https://cran.r-project.org/package=ClusterR) to perform K means clustering instead of the `kmeans` function from `base`.
+A Shiny app looking just like the first one, but using the [{ClusterR} package](https://cran.r-project.org/package=ClusterR) to perform K means clustering instead of the `kmeans` function from {stats}.
 This illustrates how to utilize the packages already installed, {renv}'s cache and packages with compiled code having system requirements.
 
 It can be tedious to find system requirements for packages.
