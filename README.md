@@ -26,6 +26,10 @@ When making Docker images we want them to be *self-contained*, so that they can 
 So my problem is how to build self-contained Docker images *fast*, that is, using a cache.
 
 
+A nice side-effect of installing packages in the manner described here is that it is easy to include packages from private CRANs requiring authentication.
+More details are provided later.
+
+
 # A solution
 
 The aforementioned article from {renv}'s website suggests not installing packages in the image, but on the host and then allow a container created from the image to mount {renv}'s cache on the host when it runs.
@@ -155,19 +159,22 @@ You should see Shiny server starting.
 Navigate to <http://localhost:3839/project> to see the Shiny app.
 
 
-# Notes
+# Files on host
 
 Note that the `renv_install.sh` scripts modify files on the host.
 
 It modifies {renv}'s cache as intended, but also the files in the project in order to isolate the project.
-In particular, the file `renv/settings.dcf` is changed from
+In particular, the file `renv/settings.dcf` is changed from something like
 
 ```
 external.libraries:
 ignored.packages:
-snapshot.type: packrat
+package.dependency.fields: Imports, Depends, LinkingTo
+r.version:
+snapshot.type: implicit
 use.cache: TRUE
 vcs.ignore.library: TRUE
+vcs.ignore.local: TRUE
 ```
 
 to
@@ -175,13 +182,25 @@ to
 ```
 external.libraries: /usr/local/lib/R/site-library
 ignored.packages:
-snapshot.type: packrat
-use.cache: FALSE
+package.dependency.fields: Imports, Depends, LinkingTo
+r.version:
+snapshot.type: implicit
+use.cache: TRUE
 vcs.ignore.library: TRUE
+vcs.ignore.local: TRUE
 ```
 
 These steps can be reverted by deleting the folder `renv/library` and reverting the changes in `renv/settings.dcf`.
 I think these steps are not just sufficient, but also necessary.
 
 The path added in `external.libraries` is the normal package library in the current `FROM` image -- that is, the first element in the output of `.libPaths()`.
+
+
+# Private CRANs
+
+At work I use a number of internal packages stored in a private CRAN that rely on authentication through HTTP (basic HTTP access with username/password in the URL or bearer authentication with a token in the header).
+
+The approach here to install with a running container makes it easy to share these credentials as environment variables with e.g. a `-e` argument to a `docker run`.
+
+This is very different from trying to install packages *at build time*, because it is difficult to make environment variables availabe in a *non-persistent manner* at image build time.
 
