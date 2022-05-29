@@ -155,19 +155,22 @@ You should see Shiny server starting.
 Navigate to <http://localhost:3839/project> to see the Shiny app.
 
 
-# Notes
+# Files on host
 
 Note that the `renv_install.sh` scripts modify files on the host.
 
 It modifies {renv}'s cache as intended, but also the files in the project in order to isolate the project.
-In particular, the file `renv/settings.dcf` is changed from
+In particular, the file `renv/settings.dcf` is changed from something like
 
 ```
 external.libraries:
 ignored.packages:
-snapshot.type: packrat
+package.dependency.fields: Imports, Depends, LinkingTo
+r.version:
+snapshot.type: implicit
 use.cache: TRUE
 vcs.ignore.library: TRUE
+vcs.ignore.local: TRUE
 ```
 
 to
@@ -175,9 +178,12 @@ to
 ```
 external.libraries: /usr/local/lib/R/site-library
 ignored.packages:
-snapshot.type: packrat
-use.cache: FALSE
+package.dependency.fields: Imports, Depends, LinkingTo
+r.version:
+snapshot.type: implicit
+use.cache: TRUE
 vcs.ignore.library: TRUE
+vcs.ignore.local: TRUE
 ```
 
 These steps can be reverted by deleting the folder `renv/library` and reverting the changes in `renv/settings.dcf`.
