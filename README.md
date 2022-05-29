@@ -26,6 +26,10 @@ When making Docker images we want them to be *self-contained*, so that they can 
 So my problem is how to build self-contained Docker images *fast*, that is, using a cache.
 
 
+A nice side-effect of installing packages in the manner described here is that it is easy to include packages from private CRANs requiring authentication.
+More details are provided later.
+
+
 # A solution
 
 The aforementioned article from {renv}'s website suggests not installing packages in the image, but on the host and then allow a container created from the image to mount {renv}'s cache on the host when it runs.
@@ -190,4 +194,13 @@ These steps can be reverted by deleting the folder `renv/library` and reverting 
 I think these steps are not just sufficient, but also necessary.
 
 The path added in `external.libraries` is the normal package library in the current `FROM` image -- that is, the first element in the output of `.libPaths()`.
+
+
+# Private CRANs
+
+At work I use a number of internal packages stored in a private CRAN that rely on authentication through HTTP (basic HTTP access with username/password in the URL or bearer authentication with a token in the header).
+
+The approach here to install with a running container makes it easy to share these credentials as environment variables with e.g. a `-e` argument to a `docker run`.
+
+This is very different from trying to install packages *at build time*, because it is difficult to make environment variables availabe in a *non-persistent manner* at image build time.
 
